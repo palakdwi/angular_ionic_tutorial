@@ -6,11 +6,15 @@ import { RecipesPage } from './recipes.page';
 const routes: Routes = [
   {
     path: '',
-    component: RecipesPage
+    component: RecipesPage 
   },
   {
-    path: 'recipes-detail',
-    loadChildren: () => import('./recipes-detail/recipes-detail.module').then( m => m.RecipesDetailPageModule)
+    path: 'new-recipes',
+    loadChildren: () => import('./new-recipes/new-recipes.module').then( m  => m.NewRecipesPageModule)
+  },
+  {
+    path: 'recipe-detail-page',
+    loadChildren: () => import('./recipe-detail-page/recipe-detail-page.module').then( m => m.RecipeDetailPagePageModule)
   }
 ];
 

@@ -1,18 +1,26 @@
-import { Component, OnInit } from "@angular/core";
-import { Recipes } from "./recipes.model";
-import { RecipesService } from "./recipes.service";
+import { Component, OnInit } from '@angular/core';
+import { RecipesService } from './recipes.service';
+import { Recipe } from './recipe.model';
 
 @Component({
-  selector: "app-recipes",
-  templateUrl: "./recipes.page.html",
-  styleUrls: ["./recipes.page.scss"],
+  selector: 'app-recipes',
+  templateUrl: './recipes.page.html',
+  styleUrls: ['./recipes.page.scss'],
 })
 export class RecipesPage implements OnInit {
-  recipes: Recipes[];
+  recipes: Recipe[];
 
-  constructor(private recipesService: RecipesService) {}
+  constructor(private recipesService: RecipesService) { }
 
   ngOnInit() {
-    this.recipes = this.recipesService.getAllRecipes();
+    this.recipesService.recipes.subscribe(data => { 
+      this.recipes=data;
+
+    });
   }
-}
+
+  ionViewWillEnter(){
+    this.recipesService.fetchRecipes().subscribe();
+  }
+  }
+
